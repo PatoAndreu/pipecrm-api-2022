@@ -15,5 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+  return $request->user();
 });
+
+Route::apiResource('/contacts', 'App\Http\Controllers\ContactController');
+Route::apiResource('/users', 'App\Http\Controllers\UserController');
+Route::apiResource('/deals', 'App\Http\Controllers\DealController');
+Route::apiResource('/pipelines', 'App\Http\Controllers\PipelineController');
+Route::apiResource('/stages', 'App\Http\Controllers\PipelineStageController');
