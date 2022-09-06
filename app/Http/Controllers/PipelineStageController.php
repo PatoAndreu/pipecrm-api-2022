@@ -33,12 +33,12 @@ class PipelineStageController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param PipelineStage $pipelineStage
+   * @param PipelineStage $stage
    * @return PipelineStage
 	 */
-  public function show(PipelineStage $pipelineStage): PipelineStage
+  public function show(PipelineStage $stage): PipelineStage
 	{
-    return $pipelineStage;
+    return $stage;
   }
 
   /**
