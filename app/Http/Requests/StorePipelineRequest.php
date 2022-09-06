@@ -16,14 +16,6 @@ class StorePipelineRequest extends FormRequest
     return true;
   }
 
-	protected function prepareForValidation()
-	{
-		$this->merge([
-			'pipeline_id' => $this->pipelineId,
-			'probability_of_close' => $this->probabilityOfClose,
-		]);
-	}
-
   /**
    * Get the validation rules that apply to the request.
    *
@@ -33,9 +25,7 @@ class StorePipelineRequest extends FormRequest
   {
     return [
       'name' => 'required|string',
-      'pipeline_id' => 'required',
-			'probability_of_close' => 'nullable',
-			'order' => 'nullable',
+      'order' => 'required|integer',
     ];
   }
 }

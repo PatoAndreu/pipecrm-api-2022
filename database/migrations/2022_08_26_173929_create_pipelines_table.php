@@ -16,6 +16,7 @@ class CreatePipelinesTable extends Migration
         Schema::create('pipelines', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->integer("order");
             $table->timestamps();
         });
     }

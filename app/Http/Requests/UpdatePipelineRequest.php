@@ -11,9 +11,9 @@ class UpdatePipelineRequest extends FormRequest
    *
    * @return bool
    */
-  public function authorize()
-  {
-    return false;
+  public function authorize(): bool
+	{
+    return true;
   }
 
   /**
@@ -21,10 +21,11 @@ class UpdatePipelineRequest extends FormRequest
    *
    * @return array
    */
-  public function rules()
+  public function rules(): array
   {
-    return [
-      //
-    ];
+		return [
+			'name' => 'required|string',
+			'order' => 'required|integer',
+		];
   }
 }
