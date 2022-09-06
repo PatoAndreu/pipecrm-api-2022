@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PipelineStageResource;
 use App\Models\PipelineStage;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 class PipelineStageController extends Controller
@@ -12,11 +14,11 @@ class PipelineStageController extends Controller
   /**
    * Display a listing of the resource.
    *
-   * @return Collection|PipelineStage[]
-   */
-  public function index()
-  {
-    return PipelineStage::all();
+   * @return AnonymousResourceCollection
+	 */
+  public function index(): AnonymousResourceCollection
+	{
+    return PipelineStageResource::collection(PipelineStage::all());
   }
 
   /**
@@ -34,11 +36,11 @@ class PipelineStageController extends Controller
    * Display the specified resource.
    *
    * @param PipelineStage $stage
-   * @return PipelineStage
+   * @return PipelineStageResource
 	 */
-  public function show(PipelineStage $stage): PipelineStage
+  public function show(PipelineStage $stage): PipelineStageResource
 	{
-    return $stage;
+    return new PipelineStageResource($stage);
   }
 
   /**
