@@ -17,6 +17,7 @@ class PipelineSeeder extends Seeder
   {
     Pipeline::create([
       "name" => "Sales Pipeline",
+      "order" => 0,
       'created_at' => Carbon::now(),
     ]);
   }
