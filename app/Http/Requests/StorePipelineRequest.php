@@ -11,20 +11,31 @@ class StorePipelineRequest extends FormRequest
    *
    * @return bool
    */
-  public function authorize()
+  public function authorize(): bool
   {
-    return false;
+    return true;
   }
+
+	protected function prepareForValidation()
+	{
+		$this->merge([
+			'pipeline_id' => $this->pipelineId,
+			'probability_of_close' => $this->probabilityOfClose,
+		]);
+	}
 
   /**
    * Get the validation rules that apply to the request.
    *
    * @return array
    */
-  public function rules()
+  public function rules(): array
   {
     return [
-      //
+      'name' => 'required|string',
+      'pipeline_id' => 'required',
+			'probability_of_close' => 'nullable',
+			'order' => 'nullable',
     ];
   }
 }
