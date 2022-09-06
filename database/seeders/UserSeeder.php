@@ -18,9 +18,8 @@ class UserSeeder extends Seeder
       'first_name' => 'Patricio',
       'last_name' => 'Andreu',
       'email' => 'patricioandreu@gmail.com',
+      'mobile_phone_number' => "56222222222",
       'password' => bcrypt('1810'),
-      'phone_number' => "56222222222",
-      'mobile_phone_number' => "56984446080",
     ]);
 
     User::factory(10)->create();
