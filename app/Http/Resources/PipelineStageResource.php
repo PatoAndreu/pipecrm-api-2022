@@ -21,6 +21,7 @@ class PipelineStageResource extends JsonResource
 				'name' => $this->name,
 				'probabilityOfClose' => $this->probability_of_close,
 				'pipelineId' => $this->pipeline_id,
+				'order' => $this->order,
 			];
     }
 }

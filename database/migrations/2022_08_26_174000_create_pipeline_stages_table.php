@@ -16,8 +16,9 @@ class CreatePipelineStagesTable extends Migration
     Schema::create('pipeline_stages', function (Blueprint $table) {
       $table->id();
       $table->string("name");
-      $table->string("probability_of_close");
-      $table->foreignId('pipeline_id')->nullable()->constrained()
+      $table->string("probability_of_close")->nullable();
+      $table->integer("order")->nullable();
+      $table->foreignId('pipeline_id')->constrained()
         ->onDelete('cascade');
       $table->timestamps();
     });
