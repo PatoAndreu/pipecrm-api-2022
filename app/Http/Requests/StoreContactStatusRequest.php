@@ -11,9 +11,9 @@ class StoreContactStatusRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return false;
+    public function authorize(): bool
+		{
+        return true;
     }
 
     /**
@@ -21,10 +21,11 @@ class StoreContactStatusRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules(): array
+		{
         return [
-            //
+            'name' => 'required',
+            'order' => 'nullable|integer',
         ];
     }
 }

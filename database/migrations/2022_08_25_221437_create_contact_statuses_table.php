@@ -16,6 +16,7 @@ class CreateContactStatusesTable extends Migration
 		Schema::create('contact_statuses', function (Blueprint $table) {
 			$table->id();
 			$table->string("name");
+			$table->integer("order");
 			$table->timestamps();
 		});
 	}

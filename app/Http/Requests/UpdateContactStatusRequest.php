@@ -11,9 +11,9 @@ class UpdateContactStatusRequest extends FormRequest
    *
    * @return bool
    */
-  public function authorize()
-  {
-    return false;
+  public function authorize(): bool
+	{
+    return true;
   }
 
   /**
@@ -21,10 +21,11 @@ class UpdateContactStatusRequest extends FormRequest
    *
    * @return array
    */
-  public function rules()
-  {
-    return [
-      //
-    ];
+  public function rules(): array
+	{
+		return [
+			'name' => 'required',
+			'order' => 'nullable|integer',
+		];
   }
 }

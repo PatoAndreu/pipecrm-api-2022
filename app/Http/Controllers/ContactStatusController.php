@@ -4,62 +4,69 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreContactStatusRequest;
 use App\Http\Requests\UpdateContactStatusRequest;
+use App\Http\Resources\ContactStatusResource;
 use App\Models\ContactStatus;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ContactStatusController extends Controller
 {
   /**
    * Display a listing of the resource.
    *
-   * @return \Illuminate\Http\Response
-   */
-  public function index()
-  {
-    //
+   * @return AnonymousResourceCollection
+	 */
+  public function index(): AnonymousResourceCollection
+	{
+		$status = ContactStatus::all();
+    return ContactStatusResource::collection($status);
   }
 
   /**
    * Store a newly created resource in storage.
    *
-   * @param  \App\Http\Requests\StoreContactStatusRequest  $request
-   * @return \Illuminate\Http\Response
-   */
-  public function store(StoreContactStatusRequest $request)
-  {
-    //
+   * @param StoreContactStatusRequest $request
+   * @return ContactStatusResource
+	 */
+  public function store(StoreContactStatusRequest $request): ContactStatusResource
+	{
+    $result = ContactStatus::create($request->validated());
+		return new ContactStatusResource($result);
   }
 
   /**
    * Display the specified resource.
    *
-   * @param  \App\Models\ContactStatus  $contactStatus
-   * @return \Illuminate\Http\Response
-   */
-  public function show(ContactStatus $contactStatus)
-  {
-    //
+   * @param ContactStatus $status
+   * @return ContactStatusResource
+	 */
+  public function show(ContactStatus $status): ContactStatusResource
+	{
+    return new ContactStatusResource($status);
   }
 
   /**
    * Update the specified resource in storage.
    *
-   * @param  \App\Http\Requests\UpdateContactStatusRequest  $request
-   * @param  \App\Models\ContactStatus  $contactStatus
-   * @return \Illuminate\Http\Response
-   */
-  public function update(UpdateContactStatusRequest $request, ContactStatus $contactStatus)
-  {
-    //
+   * @param UpdateContactStatusRequest $request
+   * @param ContactStatus $status
+   * @return ContactStatusResource
+	 */
+  public function update(UpdateContactStatusRequest $request, ContactStatus $status): ContactStatusResource
+	{
+    $status->update($request->validated());
+
+		return new ContactStatusResource($status);
   }
 
   /**
    * Remove the specified resource from storage.
    *
-   * @param  \App\Models\ContactStatus  $contactStatus
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy(ContactStatus $contactStatus)
-  {
-    //
+   * @param ContactStatus $status
+   * @return ContactStatusResource
+	 */
+  public function destroy(ContactStatus $status): ContactStatusResource
+	{
+    $status->delete();
+		return new ContactStatusResource($status);
   }
 }
