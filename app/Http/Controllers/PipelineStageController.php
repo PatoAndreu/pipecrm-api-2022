@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePipelineRequest;
+use App\Http\Requests\StorePipelineStageRequest;
 use App\Http\Requests\UpdatePipelineStageRequest;
 use App\Http\Resources\PipelineStageResource;
 use App\Models\PipelineStage;
@@ -24,10 +24,10 @@ class PipelineStageController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @param StorePipelineRequest $request
+   * @param StorePipelineStageRequest $request
    * @return PipelineStageResource
 	 */
-  public function store(StorePipelineRequest $request): PipelineStageResource
+  public function store(StorePipelineStageRequest $request): PipelineStageResource
   {
 //		dd($request->all());
 		$result = PipelineStage::create($request->validated());
