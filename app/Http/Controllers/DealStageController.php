@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePipelineStageRequest;
+use App\Http\Requests\Pipeline\StorePipelineStageRequest;
 use App\Http\Requests\UpdateDealStageRequest;
 use App\Models\PipelineStage;
 
@@ -31,7 +31,7 @@ class DealStageController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @param  \App\Http\Requests\StorePipelineStageRequest  $request
+   * @param  \App\Http\Requests\Pipeline\StorePipelineStageRequest  $request
    * @return \Illuminate\Http\Response
    */
   public function store(StorePipelineStageRequest $request)

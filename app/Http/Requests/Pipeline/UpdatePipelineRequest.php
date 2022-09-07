@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Pipeline;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreLifeCycleStageRequest extends FormRequest
+class UpdatePipelineRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
    *
    * @return bool
    */
-  public function authorize()
-  {
-    return false;
+  public function authorize(): bool
+	{
+    return true;
   }
 
   /**
@@ -21,10 +21,11 @@ class StoreLifeCycleStageRequest extends FormRequest
    *
    * @return array
    */
-  public function rules()
+  public function rules(): array
   {
-    return [
-      //
-    ];
+		return [
+			'name' => 'required|string',
+			'order' => 'required|integer',
+		];
   }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreLifeCycleStageRequest;
-use App\Http\Requests\UpdateLifeCycleStageRequest;
+use App\Http\Requests\Contact\StoreLifeCycleStageRequest;
+use App\Http\Requests\Contact\UpdateLifeCycleStageRequest;
 use App\Models\LifeCycleStage;
 
 class LifeCycleStageController extends Controller
@@ -21,7 +21,7 @@ class LifeCycleStageController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @param  \App\Http\Requests\StoreLifeCycleStageRequest  $request
+   * @param  \App\Http\Requests\Contact\StoreLifeCycleStageRequest  $request
    * @return \Illuminate\Http\Response
    */
   public function store(StoreLifeCycleStageRequest $request)
@@ -43,7 +43,7 @@ class LifeCycleStageController extends Controller
   /**
    * Update the specified resource in storage.
    *
-   * @param  \App\Http\Requests\UpdateLifeCycleStageRequest  $request
+   * @param  \App\Http\Requests\Contact\UpdateLifeCycleStageRequest  $request
    * @param  \App\Models\LifeCycleStage  $lifeCycleStage
    * @return \Illuminate\Http\Response
    */

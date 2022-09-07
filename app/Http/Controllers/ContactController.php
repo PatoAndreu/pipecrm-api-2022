@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreContactRequest;
-use App\Http\Requests\UpdateContactRequest;
+use App\Http\Requests\Contact\StoreContactRequest;
+use App\Http\Requests\Contact\UpdateContactRequest;
 use App\Http\Resources\ContactResource;
 use App\Models\Contact;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 class ContactController extends Controller
@@ -13,9 +14,9 @@ class ContactController extends Controller
   /**
    * Display a listing of the resource.
    *
-   * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+   * @return AnonymousResourceCollection
 	 */
-  public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+  public function index(): AnonymousResourceCollection
 	{
     return ContactResource::collection(
 			     Contact::with(['life_cycle_stage', 'contact_status', 'owner', 'company', 'deals'])
@@ -51,7 +52,7 @@ class ContactController extends Controller
   /**
    * Update the specified resource in storage.
    *
-   * @param  \App\Http\Requests\UpdateContactRequest  $request
+   * @param UpdateContactRequest $request
    * @param Contact $contact
    * @return ContactResource
 	 */

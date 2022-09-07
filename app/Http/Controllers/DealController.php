@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreDealRequest;
-use App\Http\Requests\UpdateDealRequest;
+use App\Http\Requests\Deal\StoreDealRequest;
+use App\Http\Requests\Deal\UpdateDealRequest;
 use App\Models\Deal;
 
 class DealController extends Controller
@@ -32,7 +32,7 @@ class DealController extends Controller
   /**
    * Store a newly created resource in storage.
    *
-   * @param  \App\Http\Requests\StoreDealRequest  $request
+   * @param  \App\Http\Requests\Deal\StoreDealRequest  $request
    * @return \Illuminate\Http\Response
    */
   public function store(StoreDealRequest $request)
@@ -55,7 +55,7 @@ class DealController extends Controller
   /**
    * Update the specified resource in storage.
    *
-   * @param  \App\Http\Requests\UpdateDealRequest  $request
+   * @param  \App\Http\Requests\Deal\UpdateDealRequest  $request
    * @param  \App\Models\Deal  $deal
    * @return \Illuminate\Http\Response
    */

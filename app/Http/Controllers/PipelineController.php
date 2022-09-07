@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePipelineRequest;
-use App\Http\Requests\UpdatePipelineRequest;
+use App\Http\Requests\Pipeline\StorePipelineRequest;
+use App\Http\Requests\Pipeline\UpdatePipelineRequest;
 use App\Http\Resources\PipelineResource;
 use App\Models\Pipeline;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;

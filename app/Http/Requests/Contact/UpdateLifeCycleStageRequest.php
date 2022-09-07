@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Contact;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateContactStatusRequest extends FormRequest
+class UpdateLifeCycleStageRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
    *
    * @return bool
    */
-  public function authorize(): bool
-	{
-    return true;
+  public function authorize()
+  {
+    return false;
   }
 
   /**
@@ -21,11 +21,10 @@ class UpdateContactStatusRequest extends FormRequest
    *
    * @return array
    */
-  public function rules(): array
-	{
-		return [
-			'name' => 'required',
-			'order' => 'nullable|integer',
-		];
+  public function rules()
+  {
+    return [
+      //
+    ];
   }
 }

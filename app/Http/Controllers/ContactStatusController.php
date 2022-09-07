@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreContactStatusRequest;
-use App\Http\Requests\UpdateContactStatusRequest;
+use App\Http\Requests\Contact\StoreContactStatusRequest;
+use App\Http\Requests\Contact\UpdateContactStatusRequest;
 use App\Http\Resources\ContactStatusResource;
 use App\Models\ContactStatus;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;

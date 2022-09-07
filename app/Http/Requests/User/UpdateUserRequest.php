@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,6 +21,7 @@ class StoreUserRequest extends FormRequest
 		$this->merge([
 			'first_name' => $this->firstName,
 			'last_name' => $this->lastName,
+			'mobile_phone_number' => $this->mobilePhoneNumber,
 		]);
 	}
 
@@ -31,10 +32,11 @@ class StoreUserRequest extends FormRequest
      */
     public function rules(): array
 		{
-        return [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email|unique:users.email'
-        ];
+			return [
+				'first_name' => 'required',
+				'last_name' => 'required',
+				'email'     => 'sometimes|email',
+				'mobile_phone_number'     => 'nullable',
+			];
     }
 }

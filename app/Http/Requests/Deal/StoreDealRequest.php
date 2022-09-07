@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Deal;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreContactStatusRequest extends FormRequest
+class StoreDealRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize(): bool
-		{
-        return true;
+    public function authorize()
+    {
+        return false;
     }
 
     /**
@@ -21,11 +21,10 @@ class StoreContactStatusRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(): array
-		{
+    public function rules()
+    {
         return [
-            'name' => 'required',
-            'order' => 'nullable|integer',
+            //
         ];
     }
 }
