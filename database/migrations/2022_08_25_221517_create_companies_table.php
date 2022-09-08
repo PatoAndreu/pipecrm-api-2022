@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateCompaniesTable extends Migration
@@ -27,6 +28,8 @@ class CreateCompaniesTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('companies');
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+		Schema::drop('companies');
+		DB::statement('SET FOREIGN_KEY_CHECKS = 1');
   }
 }

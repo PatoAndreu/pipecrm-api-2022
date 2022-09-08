@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateContactsTable extends Migration
@@ -31,7 +32,7 @@ class CreateContactsTable extends Migration
 
       $table->foreignId('company_id')->nullable()->constrained('companies')->onDelete('SET NULL');
 
-      $table->foreignId('life_cycle_stage_id')->nullable()->constrained()->onDelete('SET NULL');
+      $table->foreignId('contact_life_cycle_stages_id')->nullable()->constrained()->onDelete('SET NULL');
 
       $table->foreignId('contact_status_id')->nullable()->constrained()->onDelete('SET NULL');
 
@@ -49,6 +50,6 @@ class CreateContactsTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('contacts');
+		Schema::drop('contacts');
   }
 }

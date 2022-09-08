@@ -53,7 +53,7 @@ class Contact extends Model
 
   public function life_cycle_stage(): \Illuminate\Database\Eloquent\Relations\BelongsTo
 	{
-    return $this->belongsTo(LifeCycleStage::class);
+    return $this->belongsTo(ContactLifeCycleStage::class);
   }
 
   public function contact_status(): \Illuminate\Database\Eloquent\Relations\BelongsTo

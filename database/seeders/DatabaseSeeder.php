@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 
     $this->call(UserSeeder::class);
     $this->call(CompanySeeder::class);
-    $this->call(LifeCycleStageSeeder::class);
+    $this->call(ContactLifeCycleStageSeeder::class);
     $this->call(ContactStatusSeeder::class);
     $this->call(ContactSeeder::class);
     $this->call(PipelineSeeder::class);

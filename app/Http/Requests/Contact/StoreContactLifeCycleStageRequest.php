@@ -4,16 +4,16 @@ namespace App\Http\Requests\Contact;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreLifeCycleStageRequest extends FormRequest
+class StoreContactLifeCycleStageRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
    *
    * @return bool
    */
-  public function authorize()
-  {
-    return false;
+  public function authorize(): bool
+	{
+    return true;
   }
 
   /**
@@ -21,10 +21,10 @@ class StoreLifeCycleStageRequest extends FormRequest
    *
    * @return array
    */
-  public function rules()
-  {
+  public function rules(): array
+	{
     return [
-      //
+      'name' => 'required|string',
     ];
   }
 }

@@ -11,6 +11,7 @@ class StoreContactRequest extends FormRequest
 	 *
 	 * @return bool
 	 */
+
 	public function authorize(): bool
 	{
 		return true;

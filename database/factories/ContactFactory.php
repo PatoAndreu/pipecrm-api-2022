@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\ContactLifeCycleStage;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
-use App\Models\LifeCycleStage;
 use App\Models\ContactStatus;
 use App\Models\Company;
 use App\Models\User;
@@ -26,7 +25,7 @@ class ContactFactory extends Factory
       "address" => $this->faker->address(),
       "owner_id" => User::all()->random()->id,
       "job_title" => $this->faker->jobTitle(),
-      "life_cycle_stage_id" => LifeCycleStage::all()->random()->id,
+      "contact_life_cycle_stages_id" => ContactLifeCycleStage::all()->random()->id,
       "contact_status_id" => ContactStatus::all()->random()->id,
       "company_id" => Company::all()->random()->id,
     ];
