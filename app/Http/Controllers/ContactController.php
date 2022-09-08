@@ -20,7 +20,7 @@ class ContactController extends Controller
 	public function index(): AnonymousResourceCollection
 	{
 		return ContactResource::collection(
-			Contact::with(['life_cycle_stage', 'contact_status', 'owner', 'company', 'deals'])
+			Contact::with(['contact_life_cycle_stage', 'contact_status', 'owner', 'company', 'deals'])
 						 ->orderBy('id', 'desc')
 						 ->get()
 		);

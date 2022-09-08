@@ -32,7 +32,7 @@ class CreateContactsTable extends Migration
 
       $table->foreignId('company_id')->nullable()->constrained('companies')->onDelete('SET NULL');
 
-      $table->foreignId('contact_life_cycle_stages_id')->nullable()->constrained()->onDelete('SET NULL');
+      $table->foreignId('contact_life_cycle_stage_id')->nullable()->constrained()->onDelete('SET NULL');
 
       $table->foreignId('contact_status_id')->nullable()->constrained()->onDelete('SET NULL');
 

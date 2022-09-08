@@ -28,16 +28,16 @@ class UpdateContactRequest extends FormRequest
 
 
 		$this->merge([
-									 'phone_number'        => $this->phoneNumber,
-									 'mobile_phone_number' => $this->mobilePhoneNumber,
-									 'job_title'           => $this->jobTitle,
-									 'region_id'           => $this->regionId,
-									 'city_id'             => $this->cityId,
-									 'website_url'         => $this->websiteUrl,
-									 'company_id'          => $this->companyId,
-									 'life_cycle_stage_id' => $this->lifeCycleStageId,
-									 'contact_status_id'   => $this->contactStatusId,
-									 'owner_id'            => $this->ownerId,
+									 'phone_number'                => $this->phoneNumber,
+									 'mobile_phone_number'         => $this->mobilePhoneNumber,
+									 'job_title'                   => $this->jobTitle,
+									 'region_id'                   => $this->regionId,
+									 'city_id'                     => $this->cityId,
+									 'website_url'                 => $this->websiteUrl,
+									 'company_id'                  => $this->companyId,
+									 'contact_life_cycle_stage_id' => $this->contactLifeCycleStageId,
+									 'contact_status_id'           => $this->contactStatusId,
+									 'owner_id'                    => $this->ownerId,
 								 ]);
 	}
 
@@ -49,7 +49,7 @@ class UpdateContactRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'first_name'           => 'string|sometimes',
+			'first_name'          => 'string|sometimes',
 			'last_name'           => 'string|sometimes',
 			'email'               => 'string|email',
 			'phone_number'        => 'nullable',
