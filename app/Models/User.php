@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -44,4 +45,10 @@ class User extends Authenticatable
     'created_at' => 'datetime',
     'email_verified_at' => 'datetime',
   ];
+
+	public function getCreatedAtAttribute(): string
+	{
+		return  Carbon::parse($this->attributes['created_at'])->format('d-m-Y H:i');
+		// return  Carbon::parse($this->attributes['created_at'])->diffForHumans();
+	}
 }

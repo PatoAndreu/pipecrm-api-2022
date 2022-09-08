@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,6 +31,20 @@ class Contact extends Model
   ];
 
 	protected $casts = ["owner_id" => "integer", "contact_status_id" => "integer", "life_cycle_stage_id" => "integer", "company_id" => "integer"];
+
+
+	public function getCreatedAtAttribute(): string
+	{
+		return  Carbon::parse($this->attributes['created_at'])->translatedFormat('d M Y H:i');
+//		return Carbon::parse($this->attributes['created_at'])->translatedFormat('l j \\de F Y H:i:s');
+//		 return  Carbon::parse($this->attributes['created_at'])->diffForHumans();
+	}
+
+	public function getUpdatedAtAttribute(): string
+	{
+		return  Carbon::parse($this->attributes['updated_at'])->diffForHumans();
+//		return Carbon::parse($this->attributes['created_at'])->translatedFormat('j \\de F Y H:i');
+	}
 
   public function company(): \Illuminate\Database\Eloquent\Relations\BelongsTo
 	{
