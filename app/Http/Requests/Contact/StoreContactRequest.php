@@ -16,6 +16,24 @@ class StoreContactRequest extends FormRequest
 		return true;
 	}
 
+	protected function prepareForValidation()
+	{
+		$this->merge([
+									 'first_name'           => $this->firstName,
+									 'last_name'           => $this->lastName,
+									 'phone_number'        => $this->phoneNumber,
+									 'mobile_phone_number' => $this->mobilePhoneNumber,
+									 'job_title'           => $this->jobTitle,
+									 'region_id'           => $this->regionId,
+									 'city_id'             => $this->cityId,
+									 'website_url'         => $this->websiteUrl,
+									 'company_id'          => $this->companyId,
+									 'owner_id'            => $this->ownerId,
+									 'life_cycle_stage_id' => $this->lifeCycleStageId,
+									 'contact_status_id'   => $this->contactStatusId,
+								 ]);
+	}
+
 
 	/**
 	 * Get the validation rules that apply to the request.
@@ -25,20 +43,20 @@ class StoreContactRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'first_name' => 'string|required',
-			'last_name' => 'string|required',
-			'email' => 'string|required|email',
-			'phone_number' => 'nullable|integer',
+			'first_name'           => 'string|required',
+			'last_name'           => 'string|required',
+			'email'               => 'string|required|email',
+			'phone_number'        => 'nullable|integer',
 			'mobile_phone_number' => 'nullable|integer',
-			'job_title' => 'nullable|string',
-			'region_id' => 'nullable|integer',
-			'city_id' => 'nullable|integer',
-			'address' => 'nullable',
-			'website_url' => 'nullable|string',
-			'company_id' => 'nullable|integer',
+			'job_title'           => 'nullable|string',
+			'region_id'           => 'nullable|integer',
+			'city_id'             => 'nullable|integer',
+			'address'             => 'nullable',
+			'website_url'         => 'nullable|string',
+			'company_id'          => 'nullable|integer',
 			'life_cycle_stage_id' => 'nullable|integer',
-			'contact_status_id' => 'nullable|integer',
-			'owner_id' => 'nullable|integer',
+			'contact_status_id'   => 'nullable|integer',
+			'owner_id'            => 'nullable|integer',
 		];
 	}
 
@@ -54,6 +72,7 @@ class StoreContactRequest extends FormRequest
 //			'required' => 'The :attribute and :other must match.',
 //			'first_name.required' => 'El campo Nombre es requerido',
 //			'last_name.required' => 'El campo Apellido es requerido',
+'phone_number.integer' => 'El campo Número de teléfono debe contener solo números.'
 		];
 	}
 
@@ -66,8 +85,8 @@ class StoreContactRequest extends FormRequest
 	{
 		return [
 			'first_name' => 'Nombre',
-			'last_name' => 'Apellido',
-			'email' => 'Email',
+			'last_name'  => 'Apellido',
+			'email'      => 'Email',
 		];
 	}
 }
