@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactLifeCycleStageController;
 use App\Http\Controllers\ContactStatusController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\PipelineController;
@@ -26,6 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/contacts', ContactController::class);
 Route::apiResource('/contact/status', ContactStatusController::class);
+Route::apiResource('/contact/stages', ContactLifeCycleStageController::class);
 Route::apiResource('/users', UserController::class);
 Route::apiResource('/deals', DealController::class);
 Route::apiResource('/pipelines', PipelineController::class);

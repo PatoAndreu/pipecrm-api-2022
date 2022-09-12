@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class LifeCycleStageFactory extends Factory
+class ContactLifeCycleStageFactory extends Factory
 {
   /**
    * Define the model's default state.

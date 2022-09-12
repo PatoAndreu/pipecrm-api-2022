@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Contact;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\User;
 
 class UpdateContactRequest extends FormRequest
 {
@@ -26,18 +27,17 @@ class UpdateContactRequest extends FormRequest
 			$this->merge(['last_name' => $this->lastName]);
 		}
 
-
 		$this->merge([
-									 'phone_number'        => $this->phoneNumber,
-									 'mobile_phone_number' => $this->mobilePhoneNumber,
-									 'job_title'           => $this->jobTitle,
-									 'region_id'           => $this->regionId,
-									 'city_id'             => $this->cityId,
-									 'website_url'         => $this->websiteUrl,
-									 'company_id'          => $this->companyId,
-									 'life_cycle_stage_id' => $this->lifeCycleStageId,
-									 'contact_status_id'   => $this->contactStatusId,
-									 'owner_id'            => $this->ownerId,
+									 'phone_number'                => $this->phoneNumber,
+									 'mobile_phone_number'         => $this->mobilePhoneNumber,
+									 'job_title'                   => $this->jobTitle,
+									 'region_id'                   => $this->regionId,
+									 'city_id'                     => $this->cityId,
+									 'website_url'                 => $this->websiteUrl,
+									 'contact_life_cycle_stage_id' => $this->contactLifeCycleStage['id'] ?? null,
+									 'contact_status_id'           => $this->contactStatus['id'] ?? null,
+									 'company_id'                  => $this->company['id'] ?? null,
+									 'owner_id'                    => $this->owner['id'] ?? null,
 								 ]);
 	}
 
@@ -49,20 +49,20 @@ class UpdateContactRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'first_name'           => 'string|sometimes',
-			'last_name'           => 'string|sometimes',
-			'email'               => 'string|email',
-			'phone_number'        => 'nullable',
-			'mobile_phone_number' => 'nullable',
-			'job_title'           => 'nullable|string',
-			'region_id'           => 'nullable|integer',
-			'city_id'             => 'nullable|integer',
-			'address'             => 'nullable',
-			'website_url'         => 'nullable|string',
-			'company_id'          => 'nullable|integer',
-			'life_cycle_stage_id' => 'nullable|integer',
-			'contact_status_id'   => 'nullable|integer',
-			'owner_id'            => 'nullable|integer',
+			'first_name'                   => 'string|sometimes',
+			'last_name'                   => 'string|sometimes',
+			'email'                       => 'string|email',
+			'phone_number'                => 'nullable',
+			'mobile_phone_number'         => 'nullable',
+			'job_title'                   => 'nullable|string',
+			'region_id'                   => 'nullable|integer',
+			'city_id'                     => 'nullable|integer',
+			'address'                     => 'nullable',
+			'website_url'                 => 'nullable|string',
+			'company_id'                  => 'nullable|integer|exists:App\Models\Company,id',
+			'contact_life_cycle_stage_id' => 'nullable|integer|exists:App\Models\ContactLifeCycleStage,id',
+			'contact_status_id'           => 'nullable|integer|exists:App\Models\ContactStatus,id',
+			'owner_id'                    => 'nullable|integer|exists:App\Models\User,id',
 		];
 	}
 
@@ -74,9 +74,12 @@ class UpdateContactRequest extends FormRequest
 	public function attributes(): array
 	{
 		return [
-			'first_name' => 'Nombre',
-			'last_name'  => 'Apellido',
-			'email'      => 'Email',
+			'first_name'                   => 'Nombre',
+			'last_name'                   => 'Apellido',
+			'email'                       => 'Email',
+			'owner_id'                    => 'Propietario',
+			'contact_status_id'           => 'Estado del Lead',
+			'contact_life_cycle_stage_id' => 'Ciclo de vida del Lead',
 		];
 	}
 }

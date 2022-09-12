@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLifeCycleStagesTable extends Migration
+class CreateContactLifeCycleStagesTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLifeCycleStagesTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('life_cycle_stages', function (Blueprint $table) {
+		Schema::create('contact_life_cycle_stages', function (Blueprint $table) {
 			$table->id();
 			$table->string("name");
 			$table->timestamps();
@@ -27,6 +27,6 @@ class CreateLifeCycleStagesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('life_cycle_stages');
+		Schema::dropIfExists('contact_life_cycle_stages');
 	}
 }

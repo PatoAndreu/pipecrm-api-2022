@@ -6,7 +6,7 @@ use App\Models\LifeCycleStage;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class LifeCycleStagePolicy
+class ContactLifeCycleStagePolicy
 {
   use HandlesAuthorization;
 

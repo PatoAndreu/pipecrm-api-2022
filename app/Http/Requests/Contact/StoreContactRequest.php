@@ -11,6 +11,7 @@ class StoreContactRequest extends FormRequest
 	 *
 	 * @return bool
 	 */
+
 	public function authorize(): bool
 	{
 		return true;
@@ -29,8 +30,8 @@ class StoreContactRequest extends FormRequest
 									 'website_url'         => $this->websiteUrl,
 									 'company_id'          => $this->companyId,
 									 'owner_id'            => $this->ownerId,
-									 'life_cycle_stage_id' => $this->lifeCycleStageId,
-									 'contact_status_id'   => $this->contactStatusId,
+									 'life_cycle_stage_id' => $this->lifeCycleStage,
+									 'contact_status_id'   => $this->contactStatus,
 								 ]);
 	}
 

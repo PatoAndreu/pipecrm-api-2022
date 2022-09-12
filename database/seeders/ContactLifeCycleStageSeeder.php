@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\ContactLifeCycleStage;
 use Illuminate\Database\Seeder;
-use App\Models\LifeCycleStage;
 use Carbon\Carbon;
 
-class LifeCycleStageSeeder extends Seeder
+class ContactLifeCycleStageSeeder extends Seeder
 {
   /**
    * Run the database seeds.
@@ -15,7 +15,7 @@ class LifeCycleStageSeeder extends Seeder
    */
   public function run()
   {
-    LifeCycleStage::insert(
+    ContactLifeCycleStage::insert(
       [
         [
           "name" => "Suscriptor",
