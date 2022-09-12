@@ -29,6 +29,8 @@ class ContactFactory extends Factory
 			"contact_life_cycle_stage_id" => ContactLifeCycleStage::all()->random()->id,
 			"contact_status_id"           => ContactStatus::all()->random()->id,
 			"company_id"                  => Company::all()->random()->id,
+			"created_at"                  => $this->faker->dateTimeThisYear(),
+			"updated_at"                  => $this->faker->dateTimeThisMonth(),
 		];
 	}
 }

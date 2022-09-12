@@ -19,7 +19,7 @@ class ContactLifeCycleStageController extends Controller
 	 */
   public function index(): AnonymousResourceCollection
 	{
-		return ContactLifeCycleStageResource::collection(ContactLifeCycleStage::all());
+		return ContactLifeCycleStageResource::collection(ContactLifeCycleStage::orderBy('name','asc')->get());
   }
 
 	/**

@@ -21,7 +21,7 @@ class ContactController extends Controller
 	{
 		return ContactResource::collection(
 			Contact::with(['contact_life_cycle_stage', 'contact_status', 'owner', 'company', 'deals'])
-						 ->orderBy('id', 'desc')
+						 ->orderBy('created_at', 'desc')
 						 ->get()
 		);
 	}

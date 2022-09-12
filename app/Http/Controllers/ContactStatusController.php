@@ -17,7 +17,7 @@ class ContactStatusController extends Controller
 	 */
   public function index(): AnonymousResourceCollection
 	{
-		$status = ContactStatus::all();
+		$status = ContactStatus::orderBy('name','asc')->get();
     return ContactStatusResource::collection($status);
   }
 
