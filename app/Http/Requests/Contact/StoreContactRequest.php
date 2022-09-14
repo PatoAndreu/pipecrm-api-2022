@@ -20,18 +20,18 @@ class StoreContactRequest extends FormRequest
 	protected function prepareForValidation()
 	{
 		$this->merge([
-									 'first_name'           => $this->firstName,
-									 'last_name'           => $this->lastName,
-									 'phone_number'        => $this->phoneNumber,
-									 'mobile_phone_number' => $this->mobilePhoneNumber,
-									 'job_title'           => $this->jobTitle,
-									 'region_id'           => $this->regionId,
-									 'city_id'             => $this->cityId,
-									 'website_url'         => $this->websiteUrl,
-									 'company_id'          => $this->companyId,
-									 'owner_id'            => $this->ownerId,
-									 'life_cycle_stage_id' => $this->lifeCycleStage,
-									 'contact_status_id'   => $this->contactStatus,
+									 'first_name'                  => $this->firstName,
+									 'last_name'                   => $this->lastName,
+									 'phone_number'                => $this->phoneNumber,
+									 'mobile_phone_number'         => $this->mobilePhoneNumber,
+									 'job_title'                   => $this->jobTitle,
+									 'region_id'                   => $this->regionId,
+									 'city_id'                     => $this->cityId,
+									 'website_url'                 => $this->websiteUrl,
+									 'contact_life_cycle_stage_id' => $this->contactLifeCycleStage['id'] ?? null,
+									 'contact_status_id'           => $this->contactStatus['id'] ?? null,
+									 'company_id'                  => $this->company['id'] ?? null,
+									 'owner_id'                    => $this->owner['id'] ?? null,
 								 ]);
 	}
 
@@ -44,20 +44,20 @@ class StoreContactRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'first_name'           => 'string|required',
-			'last_name'           => 'string|required',
-			'email'               => 'string|required|email',
-			'phone_number'        => 'nullable|integer',
-			'mobile_phone_number' => 'nullable|integer',
-			'job_title'           => 'nullable|string',
-			'region_id'           => 'nullable|integer',
-			'city_id'             => 'nullable|integer',
-			'address'             => 'nullable',
-			'website_url'         => 'nullable|string',
-			'company_id'          => 'nullable|integer',
-			'life_cycle_stage_id' => 'nullable|integer',
-			'contact_status_id'   => 'nullable|integer',
-			'owner_id'            => 'nullable|integer',
+			'first_name'                  => 'string|required',
+			'last_name'                   => 'string|required',
+			'email'                       => 'string|required|email',
+			'phone_number'                => 'nullable|integer',
+			'mobile_phone_number'         => 'nullable|integer',
+			'job_title'                   => 'nullable|string',
+			'region_id'                   => 'nullable|integer',
+			'city_id'                     => 'nullable|integer',
+			'address'                     => 'nullable',
+			'website_url'                 => 'nullable|string',
+			'company_id'                  => 'nullable|integer',
+			'contact_life_cycle_stage_id' => 'nullable|integer',
+			'contact_status_id'           => 'nullable|integer',
+			'owner_id'                    => 'nullable|integer',
 		];
 	}
 
