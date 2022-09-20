@@ -37,8 +37,8 @@ class ContactController extends Controller
 		$result = Contact::create($request->validated());
 
 		return response()->json([
-															'data'   => new ContactResource($result),
-															'status' => 200
+															'data' => new ContactResource($result),
+															'response' => ['status' => 200, 'errors' => null]
 														]);
 //		return new ContactResource($result);
 	}
@@ -65,8 +65,8 @@ class ContactController extends Controller
 	{
 		$contact->update($request->validated());
 		return response()->json([
-															'data'   => new ContactResource($contact),
-															'status' => 200
+															'data' => new ContactResource($contact),
+															'response' => ['status' => 200, 'errors' => null]
 														]);
 	}
 
@@ -74,11 +74,14 @@ class ContactController extends Controller
 	 * Remove the specified resource from storage.
 	 *
 	 * @param Contact $contact
-	 * @return Response
+	 * @return JsonResponse
 	 */
-	public function destroy(Contact $contact): Response
+	public function destroy(Contact $contact): JsonResponse
 	{
 		$contact->delete();
-		return response('', 204);
+		return response()->json([
+															'data' => null,
+															'response' => ['status' => 200, 'errors' => null]
+														]);
 	}
 }
