@@ -48,7 +48,7 @@ class StoreContactRequest extends FormRequest
 			'last_name'                   => 'string|required',
 			'email'                       => 'string|required|email',
 			'phone_number'                => 'nullable|integer',
-			'mobile_phone_number'         => 'nullable|integer',
+			'mobile_phone_number'         => 'nullable|integer|alpha_num',
 			'job_title'                   => 'nullable|string',
 			'region_id'                   => 'nullable|integer',
 			'city_id'                     => 'nullable|integer',
@@ -73,7 +73,7 @@ class StoreContactRequest extends FormRequest
 //			'required' => 'The :attribute and :other must match.',
 //			'first_name.required' => 'El campo Nombre es requerido',
 //			'last_name.required' => 'El campo Apellido es requerido',
-'phone_number.integer' => 'El campo Número de teléfono debe contener solo números.'
+'mobile_phone_number.integer' => 'El campo Número de teléfono debe contener solo números.'
 		];
 	}
 
@@ -85,9 +85,10 @@ class StoreContactRequest extends FormRequest
 	public function attributes(): array
 	{
 		return [
-			'first_name' => 'Nombre',
-			'last_name'  => 'Apellido',
-			'email'      => 'Email',
+			'first_name'           => 'Nombre',
+			'last_name'           => 'Apellido',
+			'email'               => 'Email',
+			'mobile_phone_number' => 'Número de teléfono',
 		];
 	}
 }
