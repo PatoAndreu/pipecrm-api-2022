@@ -20,6 +20,7 @@ class StoreActivityRequest extends FormRequest
 	{
 		$this->merge([
 									 'pinned'     => $this->pinned,
+									 'delayed'    => $this->delayed ?? false,
 									 'contact_id' => $this->contact['id'] ?? null,
 									 'company_id' => $this->company['id'] ?? null,
 									 'deal_id'    => $this->deal['id'] ?? null,
@@ -37,9 +38,10 @@ class StoreActivityRequest extends FormRequest
 		return [
 			'text'       => 'required',
 			'pinned'     => 'nullable',
-			'date'       => 'required',
-			'time'       => 'required',
+			'date'       => 'nullable',
+			'time'       => 'nullable',
 			'type'       => 'required',
+			'delayed'    => 'sometimes',
 			'contact_id' => 'nullable|exists:App\Models\Contact,id',
 			'company_id' => 'nullable|exists:App\Models\Company,id',
 			'deal_id'    => 'nullable|exists:App\Models\Deal,id',

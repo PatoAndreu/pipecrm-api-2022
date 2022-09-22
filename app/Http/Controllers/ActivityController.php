@@ -6,6 +6,7 @@ use App\Http\Requests\Activity\StoreActivityRequest;
 use App\Http\Requests\Activity\UpdateActivityRequest;
 use App\Http\Resources\ActivityResource;
 use App\Models\Activity;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -18,8 +19,9 @@ class ActivityController extends Controller
 	 */
 	public function index(): AnonymousResourceCollection
 	{
+		$this->markDelayed();
 		return ActivityResource::collection(
-			Activity::orderBy('created_at', 'desc')
+			Activity::orderBy('date', 'desc')
 							->get()
 		);
 	}
@@ -37,9 +39,6 @@ class ActivityController extends Controller
 							->get()
 		);
 	}
-
-
-
 
 	/**
 	 * Store a newly created resource in storage.
@@ -98,5 +97,19 @@ class ActivityController extends Controller
 															'data'     => null,
 															'response' => ['status' => 200, 'errors' => null]
 														]);
+	}
+
+	private function markDelayed()
+	{
+		$now = Carbon::now()->format('Y-m-d H:i:s');
+		 Activity::select(['id','date', 'time','delayed'])->where('type','!=','note')->where('completed','!=',true)->get()->map(function ($activity) use ($now) {
+			$date = Carbon::parse($activity->date.' '.$activity->time)->format('Y-m-d H:i:s');
+			 if($date < $now){
+//				 echo $activity['id'].' - '.$date .' - '.$now. '<br>';
+				 $activity['delayed'] = true;
+				 $activity->save();
+			 }
+		});
+
 	}
 }

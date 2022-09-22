@@ -24,7 +24,8 @@ class ActivityResource extends JsonResource
 			'time'      => $this->time,
 			'type'      => $this->type,
 			'contact'   => new ContactResource($this->contact),
-			'companyId' => $this->company_id,
+			'company'   => $this->company,
+			'delayed'   => $this->delayed,
 			'owner'     => new UserResource($this->owner),
 			'deal'      => $this->deal,
 		];

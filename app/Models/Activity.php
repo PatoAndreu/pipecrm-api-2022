@@ -16,13 +16,14 @@ class Activity extends Model
 		'date',
 		'time',
 		'type',
+		'delayed',
 		'contact_id',
 		'company_id',
 		'owner_id',
 		'deal_id',
 	];
 
-	protected $casts = ["owner_id" => "integer", "contact_id" => "integer", "deal_id" => "integer", "company_id" => "integer"];
+	protected $casts = ["owner_id" => "integer", "contact_id" => "integer", "deal_id" => "integer", "company_id" => "integer", "delayed" => "boolean"];
 
 	public function contact(): \Illuminate\Database\Eloquent\Relations\BelongsTo
 	{

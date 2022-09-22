@@ -20,6 +20,7 @@ class UpdateActivityRequest extends FormRequest
 	{
 		$this->merge([
 									 'pinned'     => $this->pinned ?? false,
+									 'delayed'    => $this->delayed ?? false,
 									 'contact_id' => $this->contact['id'] ?? null,
 									 'company_id' => $this->company['id'] ?? null,
 									 'deal_id'    => $this->deal['id'] ?? null,
@@ -37,13 +38,15 @@ class UpdateActivityRequest extends FormRequest
 		return [
 			'text'       => 'sometimes|required',
 			'pinned'     => 'sometimes',
-			'date'       => 'sometimes|required',
-			'time'       => 'sometimes|required',
+			'completed'  => 'sometimes',
+			'date'       => 'sometimes',
+			'time'       => 'sometimes',
+			'delayed'    => 'sometimes',
 			'type'       => 'sometimes|required',
-			'contact_id' => 'sometimes|exists:App\Models\Contact,id',
+			'contact_id' => 'nullable|sometimes|exists:App\Models\Contact,id',
 			'company_id' => 'nullable|exists:App\Models\Company,id',
 			'deal_id'    => 'nullable|exists:App\Models\Deal,id',
-			'owner_id'   => 'nullable|exists:App\Models\User,id',
+			'owner_id'   => 'exists:App\Models\User,id',
 		];
 	}
 

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use App\Models\Contact;
 use App\Models\Deal;
 use App\Models\User;
@@ -25,6 +26,7 @@ class ActivityFactory extends Factory
 			"type"       => $this->faker->randomElement(['note', 'call', 'email', 'meeting']),
 			"owner_id"   => User::all()->random()->id,
 			"contact_id" => Contact::all()->random()->id,
+			"company_id" => Company::all()->random()->id,
 			"deal_id"    => Deal::all()->random()->id,
 		];
 	}

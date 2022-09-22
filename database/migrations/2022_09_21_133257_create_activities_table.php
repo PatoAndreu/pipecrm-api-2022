@@ -18,9 +18,10 @@ class CreateActivitiesTable extends Migration
 			$table->text('text');
 			$table->boolean('pinned')->default(false);
 			$table->boolean('completed')->default(false);
-			$table->date('date');
-			$table->time('time');
+			$table->date('date')->nullable();
+			$table->time('time')->nullable();
 			$table->enum('type', ['note', 'call', 'email', 'meeting']);
+			$table->boolean('delayed')->default(false);
 
 			$table->foreignId("contact_id")->nullable()->constrained("contacts")->onDelete('cascade');
 			$table->foreignId("company_id")->nullable()->constrained("companies")->onDelete('cascade');
