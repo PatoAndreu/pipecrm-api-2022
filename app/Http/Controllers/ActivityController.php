@@ -34,6 +34,7 @@ class ActivityController extends Controller
 	 */
 	public function byContact($contact): AnonymousResourceCollection
 	{
+		$this->markDelayed();
 		return ActivityResource::collection(
 			Activity::where('contact_id', $contact)
 							->get()
