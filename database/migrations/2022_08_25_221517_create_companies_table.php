@@ -7,29 +7,37 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCompaniesTable extends Migration
 {
-  /**
-   * Run the migrations.
-   *
-   * @return void
-   */
-  public function up()
-  {
-    Schema::create('companies', function (Blueprint $table) {
-      $table->id();
-      $table->string("name");
-      $table->timestamps();
-    });
-  }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('companies', function (Blueprint $table) {
+			$table->id();
+			$table->string("name");
+			$table->string("dominio")->nullable();
+			$table->string("address")->nullable();
+			$table->enum('type', ['cliente potencial', 'socio', 'revendedor', 'proveedor', 'other'])->nullable()->default(NULL);
+			$table->string("city")->nullable();
+			$table->string("region")->nullable();
+			$table->text("description")->nullable();
+			$table->timestamps();
 
-  /**
-   * Reverse the migrations.
-   *
-   * @return void
-   */
-  public function down()
-  {
+			$table->foreignId('owner_id')->nullable()->constrained('users')->onDelete('SET NULL');
+		});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
 		DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 		Schema::drop('companies');
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-  }
+	}
 }
