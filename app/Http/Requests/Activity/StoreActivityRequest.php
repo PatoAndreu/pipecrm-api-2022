@@ -37,11 +37,13 @@ class StoreActivityRequest extends FormRequest
 	{
 		return [
 			'text'       => 'required',
+			'note'       => 'nullable',
 			'pinned'     => 'nullable',
 			'date'       => 'nullable',
 			'time'       => 'nullable',
 			'type'       => 'required',
 			'delayed'    => 'sometimes',
+			'priority'   => 'sometimes',
 			'contact_id' => 'nullable|exists:App\Models\Contact,id',
 			'company_id' => 'nullable|exists:App\Models\Company,id',
 			'deal_id'    => 'nullable|exists:App\Models\Deal,id',

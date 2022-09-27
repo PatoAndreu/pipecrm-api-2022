@@ -18,8 +18,10 @@ class ActivityResource extends JsonResource
 		return [
 			'id'        => $this->id,
 			'text'      => $this->text,
+			'note'      => $this->note,
 			'pinned'    => $this->pinned,
 			'completed' => $this->completed,
+			'priority'  => $this->priority,
 			'date'      => $this->date,
 			'time'      => $this->time,
 			'type'      => $this->type,
