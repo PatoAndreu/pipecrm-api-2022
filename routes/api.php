@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactLifeCycleStageController;
 use App\Http\Controllers\ContactStatusController;
@@ -34,6 +35,7 @@ Route::apiResource('/deals', DealController::class);
 Route::apiResource('/pipelines', PipelineController::class);
 Route::apiResource('/stages', PipelineStageController::class);
 Route::apiResource('/activities', ActivityController::class);
+Route::apiResource('/companies', CompanyController::class);
 
 Route::get('/activities/contact/{contact}', 'App\Http\Controllers\ActivityController@byContact');
 Route::get('/deals/contact/{contact}', 'App\Http\Controllers\DealController@byContact');
