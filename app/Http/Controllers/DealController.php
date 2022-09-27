@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Deal\StoreDealRequest;
 use App\Http\Requests\Deal\UpdateDealRequest;
+use App\Http\Resources\DealResource;
 use App\Models\Deal;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class DealController extends Controller
 {
   /**
    * Display a listing of the resource.
    *
-   * @return \Illuminate\Http\Response
-   */
-  public function index()
-  {
-    return Deal::with(['pipeline_stage.pipeline', 'contact', 'owner'])->get();
+   * @return AnonymousResourceCollection
+	 */
+  public function index(): AnonymousResourceCollection
+	{
+    return DealResource::collection(Deal::with(['pipeline_stage.pipeline', 'contact', 'owner'])->get());
     // return Deal::with(['pipeline_stage.pipeline', 'pipeline.pipelinestages'])->first();
   }
 
@@ -39,6 +41,20 @@ class DealController extends Controller
   {
     //
   }
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @param $contact
+	 * @return AnonymousResourceCollection
+	 */
+	public function byContact($contact): AnonymousResourceCollection
+	{
+		return DealResource::collection(
+			Deal::where('contact_id', $contact)
+							->get()
+		);
+	}
 
   /**
    * Display the specified resource.

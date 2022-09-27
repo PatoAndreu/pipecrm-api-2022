@@ -16,39 +16,39 @@ class Deal extends Model
     'updated_at'
   ];
 
-  public function getCreatedAtAttribute()
-  {
+  public function getCreatedAtAttribute(): string
+	{
     return  Carbon::parse($this->attributes['created_at'])->format('d-m-Y H:i');
     // return  Carbon::parse($this->attributes['created_at'])->diffForHumans();
   }
 
-  public function getUpdatedAtAttribute()
-  {
+  public function getUpdatedAtAttribute(): string
+	{
     return  Carbon::parse($this->attributes['updated_at'])->diffForHumans();
   }
 
-  public function Contact()
-  {
+  public function Contact(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+	{
     return $this->belongsTo(Contact::class);
   }
 
-  public function Pipeline()
-  {
+  public function Pipeline(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+	{
     return $this->belongsTo(Pipeline::class);
   }
 
-  public function Pipeline_Stage()
-  {
+  public function Pipeline_Stage(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+	{
     return $this->belongsTo(PipelineStage::class, 'pipeline_stage_id');
   }
 
-  public function Company()
-  {
+  public function Company(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+	{
     return $this->belongsTo(Company::class);
   }
 
-  public function Owner()
-  {
+  public function Owner(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+	{
     return $this->belongsTo(User::class);
   }
 }

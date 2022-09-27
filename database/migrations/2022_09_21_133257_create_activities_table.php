@@ -16,17 +16,19 @@ class CreateActivitiesTable extends Migration
 		Schema::create('activities', function (Blueprint $table) {
 			$table->id();
 			$table->text('text');
+			$table->text('note')->nullable();
 			$table->boolean('pinned')->default(false);
 			$table->boolean('completed')->default(false);
 			$table->date('date')->nullable();
 			$table->time('time')->nullable();
-			$table->enum('type', ['note', 'call', 'email', 'meeting']);
+			$table->enum('type', ['note', 'call', 'email', 'meeting', 'other']);
+			$table->enum('priority', ['low', 'medium', 'high'])->default(null)->nullable();
 			$table->boolean('delayed')->default(false);
 
-			$table->foreignId("contact_id")->nullable()->constrained("contacts")->onDelete('cascade');
-			$table->foreignId("company_id")->nullable()->constrained("companies")->onDelete('cascade');
-			$table->foreignId("owner_id")->nullable()->constrained("users")->onDelete('cascade');
-			$table->foreignId("deal_id")->nullable()->constrained("deals")->onDelete('cascade');
+			$table->foreignId("contact_id")->nullable()->constrained("contacts")->onDelete('SET NULL');
+			$table->foreignId("company_id")->nullable()->constrained("companies")->onDelete('SET NULL');
+			$table->foreignId("owner_id")->nullable()->constrained("users")->onDelete('SET NULL');
+			$table->foreignId("deal_id")->nullable()->constrained("deals")->onDelete('SET NULL');
 
 			$table->timestamps();
 		});

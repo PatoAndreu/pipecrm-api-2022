@@ -35,11 +35,13 @@ class UpdateActivityRequest extends FormRequest
 	{
 		return [
 			'text'       => 'sometimes|required',
+			'note'       => '',
 			'pinned'     => '',
 			'completed'  => '',
 			'date'       => 'nullable',
 			'time'       => 'nullable',
 			'delayed'    => '',
+			'priority'   => '',
 			'type'       => 'required',
 			'contact_id' => 'nullable|sometimes|exists:App\Models\Contact,id',
 			'company_id' => 'nullable|exists:App\Models\Company,id',
