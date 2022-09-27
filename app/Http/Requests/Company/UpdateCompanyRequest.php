@@ -11,9 +11,9 @@ class UpdateCompanyRequest extends FormRequest
    *
    * @return bool
    */
-  public function authorize()
-  {
-    return false;
+  public function authorize(): bool
+	{
+    return true;
   }
 
   /**
@@ -21,10 +21,15 @@ class UpdateCompanyRequest extends FormRequest
    *
    * @return array
    */
-  public function rules()
-  {
+  public function rules(): array
+	{
     return [
-      //
+			"name"        => 'required',
+			"dominio"     => 'nullable',
+			"type"        => 'nullable',
+			"city"        => 'nullable',
+			"address"     => 'nullable',
+			"description" => 'nullable',
     ];
   }
 }
