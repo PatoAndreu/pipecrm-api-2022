@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +17,8 @@ class Activity extends Model
 		'date',
 		'time',
 		'type',
+		'note',
+		'priority',
 		'delayed',
 		'contact_id',
 		'company_id',
@@ -24,6 +27,11 @@ class Activity extends Model
 	];
 
 	protected $casts = ["owner_id" => "integer", "contact_id" => "integer", "deal_id" => "integer", "company_id" => "integer", "delayed" => "boolean"];
+
+	public function getTimeAttribute():string
+	{
+		return Carbon::parse($this->attributes['time'])->translatedFormat('H:i');
+	}
 
 	public function contact(): \Illuminate\Database\Eloquent\Relations\BelongsTo
 	{

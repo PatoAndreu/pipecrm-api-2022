@@ -105,11 +105,12 @@ class ActivityController extends Controller
 		$now = Carbon::now()->format('Y-m-d H:i:s');
 		 Activity::select(['id','date', 'time','delayed'])->where('type','!=','note')->where('completed','!=',true)->get()->map(function ($activity) use ($now) {
 			$date = Carbon::parse($activity->date.' '.$activity->time)->format('Y-m-d H:i:s');
+			 $activity['delayed'] = false;
 			 if($date < $now){
 //				 echo $activity['id'].' - '.$date .' - '.$now. '<br>';
 				 $activity['delayed'] = true;
-				 $activity->save();
 			 }
+			 $activity->save();
 		});
 
 	}
