@@ -15,7 +15,7 @@ class CompanyFactory extends Factory
 	{
 		return [
 			"name"        => $this->faker->company(),
-			"dominio"     => $this->faker->domainName(),
+			"domain"     => $this->faker->domainName(),
 			"type"        => $this->faker->randomElement(['cliente potencial', 'socio', 'revendedor', 'proveedor', 'other']),
 			"city"        => $this->faker->city(),
 			"address"     => $this->faker->streetAddress(),
