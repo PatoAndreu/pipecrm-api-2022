@@ -25,7 +25,7 @@ class StoreCompanyRequest extends FormRequest
 	{
 		return [
 			"name"        => 'required',
-			"dominio"     => 'nullable',
+			"domain"     => 'nullable',
 			"type"        => 'nullable',
 			"city"        => 'nullable',
 			"address"     => 'nullable',
