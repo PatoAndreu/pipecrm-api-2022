@@ -30,6 +30,7 @@ class ActivityResource extends JsonResource
 			'delayed'   => $this->delayed,
 			'owner'     => new UserResource($this->owner),
 			'deal'      => $this->deal,
+			'createdAt' => $this->created_at,
 		];
 	}
 }
