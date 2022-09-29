@@ -25,7 +25,7 @@ class ActivityFactory extends Factory
 			"time"       => $this->faker->dateTimeBetween('-1 month', '+1 month'),
 			//			"date"       => $this->faker->dateTimeBetween('-1 month', '+1 month'),
 			//			"time"       => $this->faker->dateTimeBetween('-1 month', '+1 month'),
-			"type"       => $this->faker->randomElement(['note', 'call', 'email', 'meeting','other']),
+			"type"       => $this->faker->randomElement(['note', 'call', 'email','other']),
 			"priority"   => $this->faker->randomElement(['low', 'medium', 'high']),
 			"owner_id"   => User::all()->random()->id,
 			"contact_id" => Contact::all()->random()->id,

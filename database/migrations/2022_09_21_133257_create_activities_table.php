@@ -21,7 +21,7 @@ class CreateActivitiesTable extends Migration
 			$table->boolean('completed')->default(false);
 			$table->date('date')->nullable();
 			$table->time('time')->nullable();
-			$table->enum('type', ['note', 'call', 'email', 'meeting', 'other']);
+			$table->enum('type', ['note', 'call', 'email', 'other']);
 			$table->enum('priority', ['low', 'medium', 'high'])->default(null)->nullable();
 			$table->boolean('delayed')->default(false);
 
