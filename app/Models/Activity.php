@@ -26,11 +26,38 @@ class Activity extends Model
 		'deal_id',
 	];
 
-	protected $casts = ["owner_id" => "integer", "contact_id" => "integer", "deal_id" => "integer", "company_id" => "integer", "delayed" => "boolean"];
+	protected $casts = [
+		"owner_id"   => "integer",
+		"contact_id" => "integer",
+		"deal_id"    => "integer",
+		"company_id" => "integer",
+		"delayed"    => "boolean",
+		"pinned"     => "boolean",
+		"completed"  => "boolean",
+	];
 
-	public function getTimeAttribute():string
+	public function getCreatedAtAttribute(): string
 	{
-		return Carbon::parse($this->attributes['time'])->translatedFormat('H:i');
+			return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i');
+	}
+
+	public function getTimeAttribute()
+	{
+		if ($this->attributes['time']) {
+			return Carbon::parse($this->attributes['time'])->format('H:i');
+		}
+	}
+
+
+	public function getDateTimeAttribute()
+	{
+		if ($this->attributes['date'] && $this->attributes['time']) {
+
+			$dateTime = $this->attributes['date'] . ' ' . $this->attributes['time'];
+			if ($dateTime) {
+				return Carbon::parse($dateTime)->format('Y-m-d H:i');
+			}
+		}
 	}
 
 	public function contact(): \Illuminate\Database\Eloquent\Relations\BelongsTo
