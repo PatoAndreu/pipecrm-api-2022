@@ -17,25 +17,6 @@ class StoreContactRequest extends FormRequest
 		return true;
 	}
 
-	protected function prepareForValidation()
-	{
-		$this->merge([
-									 'first_name'                  => $this->firstName,
-									 'last_name'                   => $this->lastName,
-									 'phone_number'                => $this->phoneNumber,
-									 'mobile_phone_number'         => $this->mobilePhoneNumber,
-									 'job_title'                   => $this->jobTitle,
-									 'region_id'                   => $this->regionId,
-									 'city_id'                     => $this->cityId,
-									 'website_url'                 => $this->websiteUrl,
-									 'contact_life_cycle_stage_id' => $this->contactLifeCycleStage['id'] ?? null,
-									 'contact_status_id'           => $this->contactStatus['id'] ?? null,
-									 'company_id'                  => $this->company['id'] ?? null,
-									 'owner_id'                    => $this->owner['id'] ?? null,
-								 ]);
-	}
-
-
 	/**
 	 * Get the validation rules that apply to the request.
 	 *
@@ -61,7 +42,6 @@ class StoreContactRequest extends FormRequest
 		];
 	}
 
-
 	/**
 	 * Get the error messages for the defined validation rules.
 	 *
@@ -85,10 +65,28 @@ class StoreContactRequest extends FormRequest
 	public function attributes(): array
 	{
 		return [
-			'first_name'           => 'Nombre',
+			'first_name'          => 'Nombre',
 			'last_name'           => 'Apellido',
 			'email'               => 'Email',
 			'mobile_phone_number' => 'Número de teléfono',
 		];
+	}
+
+	protected function prepareForValidation()
+	{
+		$this->merge([
+									 'first_name'                  => $this->firstName,
+									 'last_name'                   => $this->lastName,
+									 'phone_number'                => $this->phoneNumber,
+									 'mobile_phone_number'         => $this->mobilePhoneNumber,
+									 'job_title'                   => $this->jobTitle,
+									 'region_id'                   => $this->regionId,
+									 'city_id'                     => $this->cityId,
+									 'website_url'                 => $this->websiteUrl,
+									 'contact_life_cycle_stage_id' => $this->contactLifeCycleStage['id'] ?? null,
+									 'contact_status_id'           => $this->contactStatus['id'] ?? null,
+									 'company_id'                  => $this->company['id'] ?? null,
+									 'owner_id'                    => $this->owner['id'] ?? null,
+								 ]);
 	}
 }
