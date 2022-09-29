@@ -8,7 +8,6 @@ use App\Http\Resources\ContactResource;
 use App\Models\Contact;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Http\Response;
 
 class ContactController extends Controller
 {
@@ -37,7 +36,7 @@ class ContactController extends Controller
 		$result = Contact::create($request->validated());
 
 		return response()->json([
-															'data' => new ContactResource($result),
+															'data'     => new ContactResource($result),
 															'response' => ['status' => 200, 'errors' => null]
 														]);
 //		return new ContactResource($result);
@@ -51,6 +50,7 @@ class ContactController extends Controller
 	 */
 	public function show(Contact $contact): ContactResource
 	{
+//		$contactResponse = Contact::with(['deals'])->find($contact->id);
 		return new ContactResource($contact);
 	}
 
@@ -65,7 +65,7 @@ class ContactController extends Controller
 	{
 		$contact->update($request->validated());
 		return response()->json([
-															'data' => new ContactResource($contact),
+															'data'     => new ContactResource($contact),
 															'response' => ['status' => 200, 'errors' => null]
 														]);
 	}
@@ -80,7 +80,7 @@ class ContactController extends Controller
 	{
 		$contact->delete();
 		return response()->json([
-															'data' => null,
+															'data'     => null,
 															'response' => ['status' => 200, 'errors' => null]
 														]);
 	}

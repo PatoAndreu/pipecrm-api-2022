@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -39,9 +38,8 @@ class ContactResource extends JsonResource
 			'owner'                   => new UserResource($this->owner),
 			'contactLifeCycleStage'   => $this->contact_life_cycle_stage,
 			'contactStatus'           => $this->contact_status,
-			'deals'                   => $this->deals,
+			'deals'                   => DealResource::collection($this->deals),
 			'company'                 => $this->company,
 		];
-//        return parent::toArray($request);
 	}
 }

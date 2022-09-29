@@ -20,12 +20,14 @@ class DealResource extends JsonResource
 			'name'          => $this->name,
 			'amount'        => $this->amount,
 			'priority'      => $this->priority,
-			'close_date'    => $this->close_date,
-			'contact'       => new ContactResource($this->contact),
+			'closeDate'     => $this->close_date,
+			'createdAt'     => $this->created_at,
+			'updatedAt'     => $this->updated_at,
+			'contact'       => $this->contact,
 			'company'       => $this->company,
 			'owner'         => new UserResource($this->owner),
 			'pipeline'      => $this->pipeline,
-			'pipelineStage' => $this->pipeline_stage,
+			'pipelineStage' => new PipelineStageResource($this->pipeline_stage),
 		];
 	}
 }
