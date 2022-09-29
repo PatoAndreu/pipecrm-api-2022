@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Activity;
+namespace App\Http\Requests\Task;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreActivityRequest extends FormRequest
+class StoreTaskRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -13,19 +13,7 @@ class StoreActivityRequest extends FormRequest
 	 */
 	public function authorize(): bool
 	{
-		return true;
-	}
-
-	protected function prepareForValidation()
-	{
-		$this->merge([
-									 'pinned'     => $this->pinned,
-									 'delayed'    => $this->delayed ?? false,
-									 'contact_id' => $this->contact['id'] ?? null,
-									 'company_id' => $this->company['id'] ?? null,
-									 'deal_id'    => $this->deal['id'] ?? null,
-									 'owner_id'   => $this->owner['id'] ?? null,
-								 ]);
+		return TRUE;
 	}
 
 	/**
@@ -80,5 +68,17 @@ class StoreActivityRequest extends FormRequest
 			'type'       => 'Tipo',
 			'contact_id' => 'Contacto',
 		];
+	}
+
+	protected function prepareForValidation()
+	{
+		$this->merge([
+									 'pinned'     => $this->pinned,
+									 'delayed'    => $this->delayed ?? FALSE,
+									 'contact_id' => $this->contact['id'] ?? NULL,
+									 'company_id' => $this->company['id'] ?? NULL,
+									 'deal_id'    => $this->deal['id'] ?? NULL,
+									 'owner_id'   => $this->owner['id'] ?? NULL,
+								 ]);
 	}
 }

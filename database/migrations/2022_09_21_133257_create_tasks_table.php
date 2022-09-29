@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActivitiesTable extends Migration
+class CreateTasksTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,7 +13,7 @@ class CreateActivitiesTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('activities', function (Blueprint $table) {
+		Schema::create('tasks', function (Blueprint $table) {
 			$table->id();
 			$table->text('text');
 			$table->text('note')->nullable();
@@ -21,7 +21,7 @@ class CreateActivitiesTable extends Migration
 			$table->boolean('completed')->default(false);
 			$table->date('date')->nullable();
 			$table->time('time')->nullable();
-			$table->enum('type', ['note', 'call', 'email', 'other']);
+			$table->enum('type', ['call', 'email', 'other']);
 			$table->enum('priority', ['low', 'medium', 'high'])->default(null)->nullable();
 			$table->boolean('delayed')->default(false);
 
@@ -41,6 +41,6 @@ class CreateActivitiesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('activities');
+		Schema::dropIfExists('tasks');
 	}
 }

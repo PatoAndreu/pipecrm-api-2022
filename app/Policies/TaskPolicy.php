@@ -6,7 +6,7 @@ use App\Models\Activity;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ActivityPolicy
+class TaskPolicy
 {
     use HandlesAuthorization;
 
