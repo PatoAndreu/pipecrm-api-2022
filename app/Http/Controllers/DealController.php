@@ -6,6 +6,7 @@ use App\Http\Requests\Deal\StoreDealRequest;
 use App\Http\Requests\Deal\UpdateDealRequest;
 use App\Http\Resources\DealResource;
 use App\Models\Deal;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
@@ -37,11 +38,16 @@ class DealController extends Controller
 	 * Store a newly created resource in storage.
 	 *
 	 * @param StoreDealRequest $request
-	 * @return Response
+	 * @return JsonResponse
 	 */
-	public function store(StoreDealRequest $request)
+	public function store(StoreDealRequest $request): JsonResponse
 	{
-		//
+		$result = Deal::create($request->validated());
+
+		return response()->json([
+															'data'     => new DealResource($result),
+															'response' => ['status' => 200, 'errors' => null]
+														]);
 	}
 
 	/**
@@ -62,9 +68,9 @@ class DealController extends Controller
 	 * Display the specified resource.
 	 *
 	 * @param Deal $deal
-	 * @return Response
+	 * @return DealResource
 	 */
-	public function show(Deal $deal)
+	public function show(Deal $deal): DealResource
 	{
 		return new DealResource($deal);
 	}
@@ -75,11 +81,15 @@ class DealController extends Controller
 	 *
 	 * @param UpdateDealRequest $request
 	 * @param Deal $deal
-	 * @return Response
+	 * @return JsonResponse
 	 */
-	public function update(UpdateDealRequest $request, Deal $deal)
+	public function update(UpdateDealRequest $request, Deal $deal): JsonResponse
 	{
-		//
+		$deal->update($request->validated());
+		return response()->json([
+															'data'     => new DealResource($deal),
+															'response' => ['status' => 200, 'errors' => null]
+														]);
 	}
 
 	/**

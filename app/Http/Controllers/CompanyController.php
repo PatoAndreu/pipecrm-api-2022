@@ -20,7 +20,7 @@ class CompanyController extends Controller
 	public function index(): AnonymousResourceCollection
 	{
 		return CompanyResource::collection(
-			Company::get()
+			Company::orderBy('name')->get()
 		);
 	}
 
