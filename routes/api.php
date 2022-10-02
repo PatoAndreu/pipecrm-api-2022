@@ -42,3 +42,4 @@ Route::apiResource('/companies', CompanyController::class);
 Route::get('/tasks/contact/{contact}', 'App\Http\Controllers\TaskController@byContact');
 Route::get('/notes/contact/{contact}', 'App\Http\Controllers\NoteController@byContact');
 Route::get('/deals/contact/{contact}', 'App\Http\Controllers\DealController@byContact');
+Route::get('/contact/activity/{id}', 'App\Http\Controllers\ContactController@activity');

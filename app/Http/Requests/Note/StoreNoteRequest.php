@@ -29,7 +29,7 @@ class StoreNoteRequest extends FormRequest
 			'contact_id' => 'nullable|exists:App\Models\Contact,id',
 			'company_id' => 'nullable|exists:App\Models\Company,id',
 			'deal_id'    => 'nullable|exists:App\Models\Deal,id',
-			'owner_id'   => 'nullable|exists:App\Models\User,id',
+			'owner_id'   => 'required|exists:App\Models\User,id',
 		];
 	}
 
