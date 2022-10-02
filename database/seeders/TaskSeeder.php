@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Activity;
+use App\Models\Task;
 use Illuminate\Database\Seeder;
 
-class ActivitySeeder extends Seeder
+class TaskSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class ActivitySeeder extends Seeder
      */
     public function run()
     {
-			Activity::factory()
+			Task::factory()
 					->count(100)
 					->create();
     }

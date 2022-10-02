@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactLifeCycleStageController;
 use App\Http\Controllers\ContactStatusController;
 use App\Http\Controllers\DealController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PipelineController;
 use App\Http\Controllers\PipelineStageController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,8 +35,11 @@ Route::apiResource('/users', UserController::class);
 Route::apiResource('/deals', DealController::class);
 Route::apiResource('/pipelines', PipelineController::class);
 Route::apiResource('/stages', PipelineStageController::class);
-Route::apiResource('/activities', ActivityController::class);
+Route::apiResource('/tasks', TaskController::class);
+Route::apiResource('/notes', NoteController::class);
 Route::apiResource('/companies', CompanyController::class);
 
-Route::get('/activities/contact/{contact}', 'App\Http\Controllers\ActivityController@byContact');
+Route::get('/tasks/contact/{contact}', 'App\Http\Controllers\TaskController@byContact');
+Route::get('/notes/contact/{contact}', 'App\Http\Controllers\NoteController@byContact');
 Route::get('/deals/contact/{contact}', 'App\Http\Controllers\DealController@byContact');
+Route::get('/contact/activity/{id}', 'App\Http\Controllers\ContactController@activity');

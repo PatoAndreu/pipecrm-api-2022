@@ -8,7 +8,7 @@ use App\Models\Deal;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ActivityFactory extends Factory
+class TaskFactory extends Factory
 {
 	/**
 	 * Define the model's default state.
@@ -25,7 +25,7 @@ class ActivityFactory extends Factory
 			"time"       => $this->faker->dateTimeBetween('-1 month', '+1 month'),
 			//			"date"       => $this->faker->dateTimeBetween('-1 month', '+1 month'),
 			//			"time"       => $this->faker->dateTimeBetween('-1 month', '+1 month'),
-			"type"       => $this->faker->randomElement(['note', 'call', 'email','other']),
+			"type"       => $this->faker->randomElement(['call', 'email','other']),
 			"priority"   => $this->faker->randomElement(['low', 'medium', 'high']),
 			"owner_id"   => User::all()->random()->id,
 			"contact_id" => Contact::all()->random()->id,

@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
     $this->call(PipelineSeeder::class);
     $this->call(PipelineStageSeeder::class);
     $this->call(DealSeeder::class);
-    $this->call(ActivitySeeder::class);
+    $this->call(TaskSeeder::class);
+    $this->call(NoteSeeder::class);
   }
 }

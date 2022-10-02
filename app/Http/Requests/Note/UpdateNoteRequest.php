@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Activity;
+namespace App\Http\Requests\Note;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateActivityRequest extends FormRequest
+class UpdateNoteRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -13,17 +13,7 @@ class UpdateActivityRequest extends FormRequest
 	 */
 	public function authorize(): bool
 	{
-		return true;
-	}
-
-	protected function prepareForValidation()
-	{
-		$this->merge([
-									 'contact_id' => $this->contact['id'] ?? null,
-									 'company_id' => $this->company['id'] ?? null,
-									 'deal_id'    => $this->deal['id'] ?? null,
-									 'owner_id'   => $this->owner['id'] ?? null,
-								 ]);
+		return TRUE;
 	}
 
 	/**
@@ -34,19 +24,12 @@ class UpdateActivityRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'text'       => 'sometimes|required',
-			'note'       => '',
-			'pinned'     => '',
-			'completed'  => '',
-			'date'       => 'nullable',
-			'time'       => 'nullable',
-			'delayed'    => '',
-			'priority'   => '',
-			'type'       => 'required',
-			'contact_id' => 'nullable|sometimes|exists:App\Models\Contact,id',
+			'text'       => 'required',
+			'pinned'     => 'nullable',
+			'contact_id' => 'nullable|exists:App\Models\Contact,id',
 			'company_id' => 'nullable|exists:App\Models\Company,id',
 			'deal_id'    => 'nullable|exists:App\Models\Deal,id',
-			'owner_id'   => 'exists:App\Models\User,id',
+			'owner_id'   => 'nullable|exists:App\Models\User,id',
 		];
 	}
 
@@ -74,12 +57,19 @@ class UpdateActivityRequest extends FormRequest
 	{
 		return [
 			'text'       => 'Texto',
-			'date'       => 'Fecha',
-			'time'       => 'Hora',
-			'type'       => 'Tipo',
 			'contact_id' => 'Contacto',
 			'company_id' => 'Empresa',
 			'owner_id'   => 'Propietario',
 		];
+	}
+
+	protected function prepareForValidation()
+	{
+		$this->merge([
+									 'contact_id' => $this->contact['id'] ?? NULL,
+									 'company_id' => $this->company['id'] ?? NULL,
+									 'deal_id'    => $this->deal['id'] ?? NULL,
+									 'owner_id'   => $this->owner['id'] ?? NULL,
+								 ]);
 	}
 }
