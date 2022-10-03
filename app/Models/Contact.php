@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
-
+use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Contact extends Model
 {
   use HasFactory;
+  use LogsActivity;
 
   protected $fillable = [
     'first_name',
@@ -29,6 +31,21 @@ class Contact extends Model
   ];
 
   protected $casts = ["owner_id" => "integer", "contact_status_id" => "integer", "contact_life_cycle_stage_id" => "integer", "company_id" => "integer"];
+
+  public function getActivitylogOptions(): LogOptions
+  {
+    return LogOptions::defaults()
+      ->logOnly(['*'])
+      // ->setDescriptionForEvent(fn (string $eventName) => "El contacto ha sido {$eventName}")
+      ->useLogName('Contact')
+      ->logOnlyDirty()
+      ->dontSubmitEmptyLogs();
+  }
+
+  // public function tapActivity(Activity $activity, string $eventName)
+  // {
+  //   $activity->description = "activity.logs.message.{$eventName}";
+  // }
 
 
   public function getCreatedAtAttribute(): string

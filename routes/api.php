@@ -43,3 +43,6 @@ Route::get('/tasks/contact/{contact}', 'App\Http\Controllers\TaskController@byCo
 Route::get('/notes/contact/{contact}', 'App\Http\Controllers\NoteController@byContact');
 Route::get('/deals/contact/{contact}', 'App\Http\Controllers\DealController@byContact');
 Route::get('/contact/activity/{id}', 'App\Http\Controllers\ContactController@activity');
+
+
+Route::get('/activity', 'App\Http\Controllers\ActivityController@index');

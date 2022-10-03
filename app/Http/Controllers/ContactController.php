@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Note;
 use App\Models\Task;
+use App\Models\User;
 use App\Models\Contact;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\NoteResource;
 use App\Http\Resources\TaskResource;
 use App\Http\Resources\ContactResource;
+use Spatie\Activitylog\Facades\CauserResolver;
 use App\Http\Requests\Contact\StoreContactRequest;
 use App\Http\Requests\Contact\UpdateContactRequest;
-use App\Http\Resources\DealResource;
-use App\Models\Deal;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ContactController extends Controller
@@ -93,8 +93,20 @@ class ContactController extends Controller
    */
   public function update(UpdateContactRequest $request, Contact $contact): JsonResponse
   {
+    $user = User::first();
+    CauserResolver::setCauser(User::find(1));
     $contact->update($request->validated());
     $contactResponse = Contact::with(['deals', 'contact_life_cycle_stage', 'contact_status'])->find($contact->id);
+    // activity('Contacto actualizado 2')
+    //   ->performedOn($contact)
+    //   ->causedBy($user)
+    //   ->event('Contacto actualizado')
+    //   ->tap(function (Activity $activity) {
+    //     // $activity->log_name = 'Contacto actualizado';
+    //   })
+    //   ->log('El contacto :subject.first_name :subject.last_name, fue actualizado por :causer.first_name :causer.last_name');
+
+
     return response()->json([
       'data'     => new ContactResource($contactResponse),
       'response' => ['status' => 200, 'errors' => null]
