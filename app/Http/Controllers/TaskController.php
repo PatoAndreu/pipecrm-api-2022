@@ -80,7 +80,11 @@ class TaskController extends Controller
    */
   public function update(UpdateTaskRequest $request, Task $task): JsonResponse
   {
+
     $task->update($request->validated());
+
+    $this->markDelayed();
+
     return response()->json([
       'data'     => new TaskResource($task),
       'response' => ['status' => 200, 'errors' => null]
@@ -102,14 +106,14 @@ class TaskController extends Controller
     ]);
   }
 
-  private function markDelayed()
+  static function markDelayed()
   {
+
     $now = Carbon::now()->format('Y-m-d H:i:s');
     Task::select(['id', 'date', 'time', 'delayed'])->where('completed', '!=', true)->get()->map(function ($task) use ($now) {
       $date = Carbon::parse($task->date . ' ' . $task->time)->format('Y-m-d H:i:s');
       $task['delayed'] = false;
       if ($date < $now) {
-        //				 echo $task['id'].' - '.$date .' - '.$now. '<br>';
         $task['delayed'] = true;
       }
       $task->save();

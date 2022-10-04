@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Resources\NoteResource;
 use App\Http\Resources\TaskResource;
 use App\Http\Resources\ContactResource;
+use App\Http\Controllers\TaskController;
 use Spatie\Activitylog\Facades\CauserResolver;
 use App\Http\Requests\Contact\StoreContactRequest;
 use App\Http\Requests\Contact\UpdateContactRequest;
@@ -33,6 +34,8 @@ class ContactController extends Controller
 
   public function activity($id)
   {
+
+    TaskController::markDelayed();
 
     $tasks = TaskResource::collection(
       Task::with(['owner', 'contact', 'company', 'deal'])->where('contact_id', $id)
@@ -93,7 +96,6 @@ class ContactController extends Controller
    */
   public function update(UpdateContactRequest $request, Contact $contact): JsonResponse
   {
-    $user = User::first();
     CauserResolver::setCauser(User::find(1));
     $contact->update($request->validated());
     $contactResponse = Contact::with(['deals', 'contact_life_cycle_stage', 'contact_status'])->find($contact->id);
