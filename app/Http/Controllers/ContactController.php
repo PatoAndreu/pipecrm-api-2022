@@ -14,6 +14,8 @@ use App\Http\Controllers\TaskController;
 use Spatie\Activitylog\Facades\CauserResolver;
 use App\Http\Requests\Contact\StoreContactRequest;
 use App\Http\Requests\Contact\UpdateContactRequest;
+use App\Http\Resources\MeetingResource;
+use App\Models\Meeting;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ContactController extends Controller

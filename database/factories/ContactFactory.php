@@ -10,27 +10,27 @@ use App\Models\User;
 
 class ContactFactory extends Factory
 {
-	/**
-	 * Define the model's default state.
-	 *
-	 * @return array
-	 */
-	public function definition(): array
-	{
-		return [
-			"first_name"                  => $this->faker->firstName(),
-			"last_name"                   => $this->faker->lastName(),
-			"email"                       => $this->faker->email(),
-			"phone_number"                => $this->faker->phoneNumber(),
-			"mobile_phone_number"         => $this->faker->phoneNumber(),
-			"address"                     => $this->faker->address(),
-			"owner_id"                    => User::all()->random()->id,
-			"job_title"                   => $this->faker->jobTitle(),
-			"contact_life_cycle_stage_id" => ContactLifeCycleStage::all()->random()->id,
-			"contact_status_id"           => ContactStatus::all()->random()->id,
-			"company_id"                  => Company::all()->random()->id,
-			"created_at"                  => $this->faker->dateTimeThisYear(),
-			"updated_at"                  => $this->faker->dateTimeThisMonth(),
-		];
-	}
+  /**
+   * Define the model's default state.
+   *
+   * @return array
+   */
+  public function definition(): array
+  {
+    return [
+      "first_name"                  => $this->faker->firstName(),
+      "last_name"                   => $this->faker->lastName(),
+      "email"                       => $this->faker->email(),
+      "phone_number"                => $this->faker->phoneNumber(),
+      "mobile_phone_number"         => $this->faker->phoneNumber(),
+      "address"                     => $this->faker->address(),
+      "owner_id"                    => User::all()->random()->id,
+      "job_title"                   => $this->faker->jobTitle(),
+      "contact_life_cycle_stage_id" => ContactLifeCycleStage::all()->random()->id,
+      "contact_status_id"           => ContactStatus::all()->random()->id,
+      "company_id"                  => Company::all()->random()->id,
+      "created_at"                  => $this->faker->dateTimeThisYear(),
+      "updated_at"                  => $this->faker->dateTimeThisMonth(),
+    ];
+  }
 }
