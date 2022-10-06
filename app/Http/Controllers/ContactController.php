@@ -6,16 +6,17 @@ use App\Models\Note;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Contact;
+use App\Models\Meeting;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\NoteResource;
 use App\Http\Resources\TaskResource;
 use App\Http\Resources\ContactResource;
+use Spatie\Activitylog\Models\Activity;
 use App\Http\Controllers\TaskController;
+use App\Http\Resources\ActivityResource;
 use Spatie\Activitylog\Facades\CauserResolver;
 use App\Http\Requests\Contact\StoreContactRequest;
 use App\Http\Requests\Contact\UpdateContactRequest;
-use App\Http\Resources\MeetingResource;
-use App\Models\Meeting;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ContactController extends Controller
@@ -53,7 +54,7 @@ class ContactController extends Controller
           ->get()
       );
 
-
+    $logs = ActivityResource::collection(Activity::with(['causer', 'subject'])->where('subject_id', $id)->get());
 
     return response()->json([
       'data'     => $tasks->merge($notes),
