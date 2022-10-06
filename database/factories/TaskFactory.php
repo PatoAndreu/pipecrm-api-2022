@@ -31,6 +31,8 @@ class TaskFactory extends Factory
       "contact_id" => Contact::all()->random()->id,
       "company_id" => Company::all()->random()->id,
       "deal_id"    => Deal::all()->random()->id,
+      "created_at"                  => $this->faker->dateTimeThisYear(),
+      "updated_at"                  => $this->faker->dateTimeThisMonth(),
     ];
   }
 }

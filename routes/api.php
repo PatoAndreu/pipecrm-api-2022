@@ -10,6 +10,7 @@ use App\Http\Controllers\PipelineController;
 use App\Http\Controllers\PipelineStageController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MeetingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,11 +39,12 @@ Route::apiResource('/stages', PipelineStageController::class);
 Route::apiResource('/tasks', TaskController::class);
 Route::apiResource('/notes', NoteController::class);
 Route::apiResource('/companies', CompanyController::class);
+Route::apiResource('/meetings', MeetingController::class);
 
 Route::get('/tasks/contact/{contact}', 'App\Http\Controllers\TaskController@byContact');
 Route::get('/notes/contact/{contact}', 'App\Http\Controllers\NoteController@byContact');
+Route::get('/meetings/contact/{contact}', 'App\Http\Controllers\MeetingController@byContact');
 Route::get('/deals/contact/{contact}', 'App\Http\Controllers\DealController@byContact');
 Route::get('/contact/activity/{id}', 'App\Http\Controllers\ContactController@activity');
-
 
 Route::get('/activity', 'App\Http\Controllers\ActivityController@index');
