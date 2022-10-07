@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use App\Http\Resources\PipelineResource;
 use App\Http\Requests\Pipeline\StorePipelineRequest;
 use App\Http\Requests\Pipeline\UpdatePipelineRequest;
+use App\Models\Deal;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PipelineController extends Controller

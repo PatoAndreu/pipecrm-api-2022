@@ -20,6 +20,7 @@ class Deal extends Model
     'name',
     'amount',
     'priority',
+    'order',
     'close_date',
     'pipeline_id',
     'pipeline_stage_id',
@@ -27,6 +28,14 @@ class Deal extends Model
     'company_id',
     'owner_id'
   ];
+
+  public static function booted()
+  {
+    static::creating(function ($model) {
+      $model->order = self::query()->where('pipeline_stage_id', $model->pipeline_stage_id)->orderByDesc('order')->first()?->order + 6000;
+    });
+    static::addGlobalScope(fn ($query) => $query->orderBy('order'));
+  }
 
   public function getCreatedAtAttribute(): string
   {
