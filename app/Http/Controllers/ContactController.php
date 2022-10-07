@@ -54,7 +54,7 @@ class ContactController extends Controller
           ->get()
       );
 
-    $logs = ActivityResource::collection(Activity::with(['causer', 'subject'])->where('subject_id', $id)->get());
+    // $logs = ActivityResource::collection(Activity::with(['causer', 'subject'])->where('subject_id', $id)->get());
 
     return response()->json([
       'data'     => $tasks->merge($notes),
