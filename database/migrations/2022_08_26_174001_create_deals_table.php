@@ -18,6 +18,7 @@ class CreateDealsTable extends Migration
       $table->string("name");
       $table->integer("amount")->nullable();
       $table->enum('priority', ['low', 'medium', 'high'])->nullable();
+      $table->enum('type', ['new customer', 'existing customer'])->nullable();
       $table->date("close_date")->nullable();
       $table->double("order");
 

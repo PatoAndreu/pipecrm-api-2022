@@ -21,7 +21,7 @@ class PipelineController extends Controller
    */
   public function index(): AnonymousResourceCollection
   {
-    return PipelineResource::collection(Pipeline::with(['pipeline_stages.deals'])->get());
+    return PipelineResource::collection(Pipeline::get());
   }
 
   /**

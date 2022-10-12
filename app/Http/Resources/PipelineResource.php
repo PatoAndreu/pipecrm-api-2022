@@ -18,11 +18,13 @@ class PipelineResource extends JsonResource
   public function toArray($request): array
   {
     return [
-      'id'            => $this->id,
-      'name'          => $this->name,
-      'order'         => $this->order,
-      'pipelineStage' => new PipelineStageResource($this->whenLoaded('pipeline_stage')),
-      'pipelineStages' =>  PipelineStageResource::collection($this->whenLoaded('pipeline_stages')),
+      'id'             => $this->id,
+      'name'           => $this->name,
+      'order'          => $this->order,
+      'createdAt'      => $this->created_at,
+      'updatedAt'      => $this->updated_at,
+      'pipelineStage'  => new PipelineStageResource($this->whenLoaded('pipeline_stage')),
+      'pipelineStages' => PipelineStageResource::collection($this->whenLoaded('pipeline_stages')),
     ];
   }
 }

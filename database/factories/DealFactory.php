@@ -23,6 +23,7 @@ class DealFactory extends Factory
       "name"              => "Negocio " . $this->faker->name(),
       "amount"            => $this->faker->numberBetween($min = 150000, $max = 10000000),
       "priority"          => $this->faker->randomElement(['low', 'medium', 'high']),
+      "type"              => $this->faker->randomElement(['new customer', 'existing customer', null]),
       "pipeline_id"       => 1,
       "pipeline_stage_id" => PipelineStage::all()->random()->id,
       "owner_id"          => User::all()->random()->id,

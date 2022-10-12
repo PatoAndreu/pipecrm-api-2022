@@ -86,7 +86,7 @@ class ContactController extends Controller
    */
   public function show(Contact $contact): ContactResource
   {
-    $contactResponse = Contact::with(['contact_life_cycle_stage', 'contact_status', 'owner', 'company', 'deals.pipeline.pipeline_stage',])->find($contact->id);
+    $contactResponse = $contact->loadMissing(['contact_life_cycle_stage', 'contact_status', 'owner', 'company', 'deals.pipeline.pipeline_stage',]);
     return new ContactResource($contactResponse);
   }
 
@@ -101,7 +101,7 @@ class ContactController extends Controller
   {
     CauserResolver::setCauser(User::find(1));
     $contact->update($request->validated());
-    $contactResponse = Contact::with(['deals', 'contact_life_cycle_stage', 'contact_status'])->find($contact->id);
+    $contactResponse = $contact->loadMissing(['deals', 'contact_life_cycle_stage', 'contact_status']);
     // activity('Contacto actualizado 2')
     //   ->performedOn($contact)
     //   ->causedBy($user)

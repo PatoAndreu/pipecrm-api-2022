@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Deal extends Model
@@ -20,6 +21,7 @@ class Deal extends Model
     'name',
     'amount',
     'priority',
+    'type',
     'order',
     'close_date',
     'pipeline_id',
@@ -29,12 +31,34 @@ class Deal extends Model
     'owner_id'
   ];
 
+  const ORDER_GAP = 60000;
+  const ORDER_MIN = 0.00002;
+
   public static function booted()
   {
     static::creating(function ($model) {
-      $model->order = self::query()->where('pipeline_stage_id', $model->pipeline_stage_id)->orderByDesc('order')->first()?->order + 6000;
+      $model->order = self::query()->where('pipeline_stage_id', $model->pipeline_stage_id)->orderByDesc('order')->first()?->order + self::ORDER_GAP;
     });
+
     static::addGlobalScope(fn ($query) => $query->orderBy('order'));
+
+    static::saved(function ($model) {
+      if ($model->order < self::ORDER_MIN) {
+        DB::statement("SET @previousOrder := 0");
+        DB::statement(
+          "
+          UPDATE deals
+          SET order = (@previousOrder := @previousOrder + ?)
+          WHERE pipeline_stage_id = ?
+          ORDER BY order
+        ",
+          [
+            self::ORDER_GAP,
+            $model->pipeline_stage_id
+          ]
+        );
+      }
+    });
   }
 
   public function getCreatedAtAttribute(): string

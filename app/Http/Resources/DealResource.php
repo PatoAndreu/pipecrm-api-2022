@@ -25,6 +25,7 @@ class DealResource extends JsonResource
       'name'          => $this->name,
       'amount'        => $this->amount,
       'priority'      => $this->priority,
+      'type'          => $this->type,
       'order'         => $this->order,
       'closeDate'     => $this->close_date,
       'createdAt'     => $this->created_at,
