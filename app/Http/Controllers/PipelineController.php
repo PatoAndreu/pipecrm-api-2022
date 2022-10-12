@@ -21,7 +21,7 @@ class PipelineController extends Controller
    */
   public function index(): AnonymousResourceCollection
   {
-    return PipelineResource::collection(Pipeline::get());
+    return PipelineResource::collection(Pipeline::with(['pipeline_stages'])->get());
   }
 
   /**
@@ -31,11 +31,11 @@ class PipelineController extends Controller
    */
   public function byUser(Request $request): PipelineResource
   {
-    return new PipelineResource(Pipeline::findOrFail($request->id)->with(['pipeline_stages.deals.owner', 'pipeline_stages.deals'  => function ($query) use ($request) {
+    return new PipelineResource(Pipeline::findOrFail($request->id)->loadMissing(['pipeline_stages.deals.owner', 'pipeline_stages.deals'  => function ($query) use ($request) {
       if ($request->userId) {
         $query->where('owner_id', $request->userId);
       }
-    }])->first());
+    }]));
   }
 
 
@@ -62,8 +62,7 @@ class PipelineController extends Controller
    */
   public function show(Pipeline $pipeline)
   {
-    return $pipeline->with(['pipeline_stages.deals'])->get();
-    // return new PipelineResource($pipeline);
+    return new PipelineResource($pipeline->loadMissing(['pipeline_stages.deals']));
   }
 
   /**
