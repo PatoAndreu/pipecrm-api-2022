@@ -27,6 +27,8 @@ class UpdateDealRequest extends FormRequest
       'name'              => 'required',
       'amount'            => 'nullable',
       'priority'          => 'nullable',
+      'type'              => 'nullable',
+      'order'             => 'nullable',
       'close_date'        => 'nullable',
       'pipeline_id'       => 'required',
       'pipeline_stage_id' => 'required',

@@ -15,10 +15,19 @@ class PipelineSeeder extends Seeder
    */
   public function run()
   {
-    Pipeline::create([
-      "name" => "Sales Pipeline",
-      "order" => 0,
-      'created_at' => Carbon::now(),
-    ]);
+    Pipeline::insert(
+      [
+        [
+          "name" => "Sales Pipeline",
+          "order" => 0,
+          'created_at' => Carbon::now(),
+        ],
+        [
+          "name" => "Marketing Pipeline",
+          "order" => 1,
+          'created_at' => Carbon::now(),
+        ]
+      ]
+    );
   }
 }

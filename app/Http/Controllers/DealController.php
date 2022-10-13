@@ -70,9 +70,13 @@ class DealController extends Controller
    * @param Deal $deal
    * @return DealResource
    */
-  public function show(Deal $deal): DealResource
+  public function show(Deal $deal): JsonResponse
   {
-    return new DealResource($deal);
+    // dd($deal->loadMissing(['pipeline', 'pipeline_stage.pipeline', 'contact', 'owner']));
+    return response()->json([
+      'data'     => new DealResource($deal->loadMissing(['pipeline', 'pipeline_stage.pipeline', 'contact', 'owner'])),
+      'response' => ['status' => 200, 'errors' => null]
+    ]);
   }
 
 

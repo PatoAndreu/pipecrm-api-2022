@@ -47,4 +47,7 @@ Route::get('/meetings/contact/{contact}', 'App\Http\Controllers\MeetingControlle
 Route::get('/deals/contact/{contact}', 'App\Http\Controllers\DealController@byContact');
 Route::get('/contact/activity/{id}', 'App\Http\Controllers\ContactController@activity');
 
+
+Route::get('/pipeline/{id}/user/{userId?}', 'App\Http\Controllers\PipelineController@byUser');
+
 Route::get('/activity', 'App\Http\Controllers\ActivityController@index');

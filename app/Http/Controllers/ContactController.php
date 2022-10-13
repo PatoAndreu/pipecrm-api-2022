@@ -6,14 +6,11 @@ use App\Models\Note;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Contact;
-use App\Models\Meeting;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\NoteResource;
 use App\Http\Resources\TaskResource;
 use App\Http\Resources\ContactResource;
-use Spatie\Activitylog\Models\Activity;
 use App\Http\Controllers\TaskController;
-use App\Http\Resources\ActivityResource;
 use Spatie\Activitylog\Facades\CauserResolver;
 use App\Http\Requests\Contact\StoreContactRequest;
 use App\Http\Requests\Contact\UpdateContactRequest;
@@ -54,7 +51,7 @@ class ContactController extends Controller
           ->get()
       );
 
-    $logs = ActivityResource::collection(Activity::with(['causer', 'subject'])->where('subject_id', $id)->get());
+    // $logs = ActivityResource::collection(Activity::with(['causer', 'subject'])->where('subject_id', $id)->get());
 
     return response()->json([
       'data'     => $tasks->merge($notes),
@@ -86,7 +83,7 @@ class ContactController extends Controller
    */
   public function show(Contact $contact): ContactResource
   {
-    $contactResponse = Contact::with(['contact_life_cycle_stage', 'contact_status', 'owner', 'company', 'deals.pipeline.pipeline_stage',])->find($contact->id);
+    $contactResponse = $contact->loadMissing(['contact_life_cycle_stage', 'contact_status', 'owner', 'company', 'deals.pipeline.pipeline_stage',]);
     return new ContactResource($contactResponse);
   }
 
@@ -101,7 +98,7 @@ class ContactController extends Controller
   {
     CauserResolver::setCauser(User::find(1));
     $contact->update($request->validated());
-    $contactResponse = Contact::with(['deals', 'contact_life_cycle_stage', 'contact_status'])->find($contact->id);
+    $contactResponse = $contact->loadMissing(['deals', 'contact_life_cycle_stage', 'contact_status']);
     // activity('Contacto actualizado 2')
     //   ->performedOn($contact)
     //   ->causedBy($user)
